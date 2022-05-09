@@ -1,9 +1,42 @@
 ﻿@page "/"
 
+@inject ServerService server
+
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<TelerikGrid TItem="@Value"
+             OnRead="@ReadItems"
+             Pageable="true" PageSize="10" FilterMode="@Telerik.Blazor.GridFilterMode.FilterMenu">
+    <GridColumns>
+        <GridColumn Field=@nameof(Value.UserName) Title="Username" />
+        <GridColumn Field=@nameof(Value.FirstName) Title="Firstname" />
+        <GridColumn Field=@nameof(Value.LastName) Title="Lastname" />
+        <GridColumn Field=@nameof(Value.MiddleName) Title="Middlename" />
+        <GridColumn Field=@nameof(Value.Gender) Title="Gender" />
+        <GridColumn Field=@nameof(Value.Age) Title="Age" />
+        <GridColumn Field=@nameof(Value.FavoriteFeature) Title="Favorite-feature" />
+    </GridColumns>
+</TelerikGrid>
 
-Welcome to your new app.
+@code {
+    protected async Task ReadItems(GridReadEventArgs args)
+    {
+        Console.WriteLine("data requested: " + args.Request);
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+        //this is a basic imlementation of custom paging of the grid
+        DataEnvelop DataResult = await FetchPagedData(args.Request.Page, args.Request.PageSize, args.Request.Sorts);
+
+        //use the current page of data and the total amount of items in the data source that are returned from the service
+        args.Data = DataResult.Value;
+        args.Total = DataResult.OdataCount;
+    }
+
+    public async Task<DataEnvelop> FetchPagedData(int pageNumber, int pageSize, IList<Telerik.DataSource.SortDescriptor> sorts)
+    {
+        var data = await server.GetDataAsync(pageSize, pageNumber);
+        if (data is not null)
+            return data;
+
+        return new DataEnvelop();//return an empty object.
+    }
+}
