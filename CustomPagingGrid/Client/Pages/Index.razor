@@ -31,6 +31,22 @@
         args.Total = DataResult.OdataCount;
     }
 
+    private void Din()
+    {
+        var list = new List<object>();
+        foreach (var item in list)
+        {
+            var type = item.GetType().GetProperties();
+            foreach (var p in type)
+            {
+                var v = p.GetValue(item);
+
+                var name = p.Name;
+            }
+
+        }
+    }
+
     public async Task<DataEnvelop> FetchPagedData(int pageNumber, int pageSize, IList<Telerik.DataSource.SortDescriptor> sorts)
     {
         var data = await server.GetDataAsync(pageSize, pageNumber);
