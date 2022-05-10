@@ -120,7 +120,6 @@
     {
         var response = await server.GetProductsAsync();
         GetValues.Clear();//empty the list first
-        await Task.Delay(1000);
         GetValues = new List<object>(response);
     }
 
@@ -130,7 +129,6 @@
         if (data is not null)
         {
             GetValues.Clear();//empty the list first
-            await Task.Delay(1000);
             GetValues = new List<object>(data.Value);
         }
     }
