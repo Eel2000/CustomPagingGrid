@@ -261,6 +261,33 @@ namespace CustomPagingGrid.Api.Controllers
                 UserName="user2043"
             },
         };
+        List<Products> products = new List<Products>
+        {
+            new Products
+            {
+                Name="Lap Top",
+                Quantity=43,
+                Price=500
+            },
+            new Products
+            {
+                Name="TV",
+                Quantity=20,
+                Price=1000
+            },
+            new Products
+            {
+                Name="Phone",
+                Quantity=100,
+                Price=200
+            },
+            new Products
+            {
+                Name="Watch",
+                Quantity=1000,
+                Price=50
+            },
+        };
 
 
         [HttpGet("data")]
@@ -288,6 +315,12 @@ namespace CustomPagingGrid.Api.Controllers
                 Take(query.PageSize).ToList()
             };
             return Ok(data);
+        }
+
+        [HttpGet("get-products")]
+        public async Task<IActionResult> GetProductsAsync()
+        {
+            return Ok(products);
         }
     }
 }

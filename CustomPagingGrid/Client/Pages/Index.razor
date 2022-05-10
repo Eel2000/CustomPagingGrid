@@ -4,7 +4,7 @@
 
 <PageTitle>Index</PageTitle>
 
-<TelerikGrid TItem="@Value"
+@*<TelerikGrid TItem="@Value"
     OnRead="@ReadItems"
     Pageable="true" PageSize="10"
     FilterMode="@Telerik.Blazor.GridFilterMode.FilterMenu"
@@ -18,10 +18,50 @@
     <GridColumn Field=@nameof(Value.Age) Title="Age" FieldType="typeof(int)" />
     <GridColumn Field=@nameof(Value.FavoriteFeature) Title="Favorite-feature" FieldType="typeof(string)" />
     </GridColumns>
-    </TelerikGrid>
+    </TelerikGrid>*@
+<b />
+<b />
 <h1>Dynamic Grid below</h1>
-<TelerikGrid Data="@GetValues" Pageable="true" Resizable="true" AutoGenerateColumns="true">
+<div class="pb-2">
+    <button class="btn btn-primary" @onclick="(()=>FetchDifferentData())">Display new Data</button>
+    <button class="btn btn-warning" @onclick="(()=>FetchOldData())">Display old data</button>
+</div>
+@*<table class="table">
+    <thead>
+    <tr>
+    @foreach (var p in GetValues.First().GetType().GetProperties())
+    {
+    <th>@p.Name</th>
+    }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in GetValues)
+    {
+    <tr>
+    @foreach (var p in item.GetType().GetProperties())
+    {
+    <td>@p.GetValue(item)</td>
+    }
+    </tr>
+    }
+    </tbody>
+    </table>*@
+
+<b />
+<b />
+@if (GetValues.Any())
+{
+
+    <TelerikGrid Data="GetValues" Sortable=true Pageable=true FilterMode="@Telerik.Blazor.GridFilterMode.FilterMenu">
+        <GridColumns>
+            @foreach (var p in GetValues.First().GetType().GetProperties())
+        {
+            <GridColumn Field="@p.Name" Title="@p.Name" FieldType="p.PropertyType" />
+        }
+    </GridColumns>
 </TelerikGrid>
+}
 
 
 @code {
@@ -74,5 +114,24 @@
         }
 
         return new DataEnvelop();//return an empty object.
+    }
+
+    public async Task FetchDifferentData()
+    {
+        var response = await server.GetProductsAsync();
+        GetValues.Clear();//empty the list first
+        await Task.Delay(1000);
+        GetValues = new List<object>(response);
+    }
+
+    public async Task FetchOldData()
+    {
+        var data = await server.GetDataAsync(10, 1);
+        if (data is not null)
+        {
+            GetValues.Clear();//empty the list first
+            await Task.Delay(1000);
+            GetValues = new List<object>(data.Value);
+        }
     }
 }
