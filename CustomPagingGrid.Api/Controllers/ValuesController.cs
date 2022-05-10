@@ -1,4 +1,5 @@
-﻿using CustomPagingGrid.Shared;
+﻿using CustomPagingGrid.Api.Models;
+using CustomPagingGrid.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -270,6 +271,21 @@ namespace CustomPagingGrid.Api.Controllers
                 OdataContext = "",
                 OdataCount = GetValues.Count,
                 Value = GetValues.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList()
+            };
+            return Ok(data);
+        }
+
+        [HttpGet("get-data")]
+        public async Task<IActionResult> GetDataFromQuery([FromQuery] QueryParameter query)
+        {
+            var data = new DataEnvelop
+            {
+                OdataContext = "",
+                OdataCount = GetValues.Count,
+                Value = GetValues
+                .OrderBy(x => nameof(query.OrderBy))
+                .Skip(query.PageSize * (query.PageNumber - 1)).
+                Take(query.PageSize).ToList()
             };
             return Ok(data);
         }

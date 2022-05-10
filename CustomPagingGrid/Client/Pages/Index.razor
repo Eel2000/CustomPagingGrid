@@ -5,20 +5,37 @@
 <PageTitle>Index</PageTitle>
 
 <TelerikGrid TItem="@Value"
-             OnRead="@ReadItems"
-             Pageable="true" PageSize="10" FilterMode="@Telerik.Blazor.GridFilterMode.FilterMenu">
+    OnRead="@ReadItems"
+    Pageable="true" PageSize="10"
+    FilterMode="@Telerik.Blazor.GridFilterMode.FilterMenu"
+    Resizable="true">
     <GridColumns>
-        <GridColumn Field=@nameof(Value.UserName) Title="Username" />
-        <GridColumn Field=@nameof(Value.FirstName) Title="Firstname" />
-        <GridColumn Field=@nameof(Value.LastName) Title="Lastname" />
-        <GridColumn Field=@nameof(Value.MiddleName) Title="Middlename" />
-        <GridColumn Field=@nameof(Value.Gender) Title="Gender" />
-        <GridColumn Field=@nameof(Value.Age) Title="Age" />
-        <GridColumn Field=@nameof(Value.FavoriteFeature) Title="Favorite-feature" />
+    <GridColumn Field=@nameof(Value.UserName) Title="Username" FieldType="typeof(string)" />
+    <GridColumn Field=@nameof(Value.FirstName) Title="Firstname" FieldType="typeof(string)" />
+    <GridColumn Field=@nameof(Value.LastName) Title="Lastname" FieldType="typeof(string)" />
+    <GridColumn Field=@nameof(Value.MiddleName) Title="Middlename" FieldType="typeof(string)" />
+    <GridColumn Field=@nameof(Value.Gender) Title="Gender" FieldType="typeof(string)" />
+    <GridColumn Field=@nameof(Value.Age) Title="Age" FieldType="typeof(int)" />
+    <GridColumn Field=@nameof(Value.FavoriteFeature) Title="Favorite-feature" FieldType="typeof(string)" />
     </GridColumns>
+    </TelerikGrid>
+<h1>Dynamic Grid below</h1>
+<TelerikGrid Data="@GetValues" Pageable="true" Resizable="true" AutoGenerateColumns="true">
 </TelerikGrid>
 
+
 @code {
+    List<Object> GetValues = new List<Object>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var data = await server.GetDataAsync(10, 1);
+        if (data is not null)
+        {
+            GetValues.AddRange(data.Value);
+        }
+    }
+
     protected async Task ReadItems(GridReadEventArgs args)
     {
         Console.WriteLine("data requested: " + args.Request);
@@ -47,11 +64,14 @@
         }
     }
 
-    public async Task<DataEnvelop> FetchPagedData(int pageNumber, int pageSize, IList<Telerik.DataSource.SortDescriptor> sorts)
+    public async Task<DataEnvelop> FetchPagedData(int pageNumber, int pageSize, IList<Telerik.DataSource.SortDescriptor> sorts = null)
     {
         var data = await server.GetDataAsync(pageSize, pageNumber);
         if (data is not null)
+        {
+            GetValues.AddRange(data.Value);
             return data;
+        }
 
         return new DataEnvelop();//return an empty object.
     }
