@@ -9,9 +9,9 @@ namespace CustomPagingGrid.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        List<Value> GetValues = new List<Value>
+        List<OValue> GetValues = new List<OValue>
         {
-            new Value
+            new OValue
             {
                 FirstName ="michaella",
                 LastName ="M",
@@ -19,7 +19,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="lucas",
                 LastName ="M",
@@ -27,7 +27,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Paul",
                 LastName ="M",
@@ -35,7 +35,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Angel",
                 LastName ="M",
@@ -43,7 +43,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Turbo",
                 LastName ="M",
@@ -51,7 +51,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Gil",
                 LastName ="M",
@@ -59,7 +59,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Fink",
                 LastName ="M",
@@ -67,7 +67,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Pinch",
                 LastName ="M",
@@ -75,7 +75,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Lucas",
                 LastName ="M",
@@ -83,7 +83,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Agrito",
                 LastName ="M",
@@ -91,7 +91,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Lua",
                 LastName ="M",
@@ -99,7 +99,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="LUna",
                 LastName ="M",
@@ -107,7 +107,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Ten",
                 LastName ="M",
@@ -115,7 +115,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Ken",
                 LastName ="M",
@@ -123,7 +123,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Kenny",
                 LastName ="M",
@@ -131,7 +131,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Kent",
                 LastName ="M",
@@ -139,7 +139,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Superman",
                 LastName ="M",
@@ -147,7 +147,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Batman",
                 LastName ="M",
@@ -155,7 +155,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="",
                 LastName ="M",
@@ -163,7 +163,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="",
                 LastName ="M",
@@ -171,7 +171,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Lucas",
                 LastName ="M",
@@ -179,7 +179,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Amelia",
                 LastName ="M",
@@ -187,7 +187,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Jordan",
                 LastName ="M",
@@ -195,7 +195,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Poole",
                 LastName ="M",
@@ -203,7 +203,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="John",
                 LastName ="M",
@@ -211,7 +211,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Doe",
                 LastName ="M",
@@ -219,7 +219,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Fi",
                 LastName ="M",
@@ -227,7 +227,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Lucia",
                 LastName ="M",
@@ -235,7 +235,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Guard",
                 LastName ="M",
@@ -243,7 +243,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="",
                 LastName ="M",
@@ -251,7 +251,7 @@ namespace CustomPagingGrid.Api.Controllers
                 Gender="Female",
                 MiddleName="Aringto",
                 UserName="user2043"
-            }, new Value
+            }, new OValue
             {
                 FirstName ="Toe",
                 LastName ="M",
@@ -308,7 +308,7 @@ namespace CustomPagingGrid.Api.Controllers
             DataEnvelop data = new DataEnvelop();
             switch (query.OrderBy)
             {
-                case nameof(Value.UserName):
+                case nameof(OValue.UserName):
                     data = new DataEnvelop
                     {
                         OdataContext = "",
@@ -319,7 +319,7 @@ namespace CustomPagingGrid.Api.Controllers
                        Take(query.Top).ToList()
                     };
                     break;
-                case nameof(Value.FirstName):
+                case nameof(OValue.FirstName):
                     data = new DataEnvelop
                     {
                         OdataContext = "",
@@ -330,7 +330,7 @@ namespace CustomPagingGrid.Api.Controllers
                        Take(query.Top).ToList()
                     };
                     break;
-                case nameof(Value.LastName):
+                case nameof(OValue.LastName):
                     data = new DataEnvelop
                     {
                         OdataContext = "",
@@ -341,7 +341,7 @@ namespace CustomPagingGrid.Api.Controllers
                        Take(query.Top).ToList()
                     };
                     break;
-                case nameof(Value.MiddleName):
+                case nameof(OValue.MiddleName):
                     data = new DataEnvelop
                     {
                         OdataContext = "",
@@ -352,7 +352,7 @@ namespace CustomPagingGrid.Api.Controllers
                        Take(query.Top).ToList()
                     };
                     break;
-                case nameof(Value.Age):
+                case nameof(OValue.Age):
                     data = new DataEnvelop
                     {
                         OdataContext = "",
@@ -363,7 +363,7 @@ namespace CustomPagingGrid.Api.Controllers
                        Take(query.Top).ToList()
                     };
                     break;
-                case nameof(Value.Gender):
+                case nameof(OValue.Gender):
                     data = new DataEnvelop
                     {
                         OdataContext = "",

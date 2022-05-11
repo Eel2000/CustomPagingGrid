@@ -7,26 +7,25 @@
 
 <PageTitle>Index</PageTitle>
 
-<TelerikGrid TItem="@Value"
+<TelerikGrid TItem="@OValue"
              OnRead="@ReadItems"
              Pageable="true" PageSize="10"
              Sortable="true"
              Resizable="true"
              Navigable="true">
     <GridColumns>
-        <GridColumn Field=@nameof(Value.UserName) Title="Username" FieldType="typeof(string)" />
-        <GridColumn Field=@nameof(Value.FirstName) Title="Firstname" FieldType="typeof(string)" />
-        <GridColumn Field=@nameof(Value.LastName) Title="Lastname" FieldType="typeof(string)" />
-        <GridColumn Field=@nameof(Value.MiddleName) Title="Middlename" FieldType="typeof(string)" />
-        <GridColumn Field=@nameof(Value.Gender) Title="Gender" FieldType="typeof(string)" />
-        <GridColumn Field=@nameof(Value.Age) Title="Age" FieldType="typeof(int)" />
-        <GridColumn Field=@nameof(Value.FavoriteFeature) Title="Favorite-feature" FieldType="typeof(string)" />
+        <GridColumn Field=@nameof(OValue.UserName) Title="Username" FieldType="typeof(string)" />
+        <GridColumn Field=@nameof(OValue.FirstName) Title="Firstname" FieldType="typeof(string)" />
+        <GridColumn Field=@nameof(OValue.LastName) Title="Lastname" FieldType="typeof(string)" />
+        <GridColumn Field=@nameof(OValue.MiddleName) Title="Middlename" FieldType="typeof(string)" />
+        <GridColumn Field=@nameof(OValue.Gender) Title="Gender" FieldType="typeof(string)" />
+        <GridColumn Field=@nameof(OValue.Age) Title="Age" FieldType="typeof(int)" />
+        <GridColumn Field=@nameof(OValue.FavoriteFeature) Title="Favorite-feature" FieldType="typeof(string)" />
     </GridColumns>
 </TelerikGrid>
 
 
 @code {
-    TelerikGrid<object> telerikGrid { get; set; }
     List<Object> GetValues = new List<Object>();
 
     protected override async Task OnInitializedAsync()
@@ -69,11 +68,7 @@
 
     public async Task<DataEnvelop> FetchPagedData(int pageNumber, int pageSize, string filter)
     {
-        var desc = filter.Replace("$", string.Empty);;
-        var d = desc.Split("&");
-        var t = d[d.Length - 2] = $"skip={pageNumber}";
-        var cleaned = string.Join("&", d);
-        var data = await server.GetDataAsync(cleaned);
+        var data = await server.GetDataAsync(Util.FormatQueryString(filter, pageNumber));
         if (data is not null)
         {
             GetValues.AddRange(data.Value);
@@ -82,6 +77,5 @@
 
         return new DataEnvelop();//return an empty object.
     }
-
 
 }

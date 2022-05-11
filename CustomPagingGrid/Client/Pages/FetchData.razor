@@ -8,6 +8,8 @@
 <div class="pb-4">
     <button class="btn btn-warning" @onclick="(()=>FetchOldData())">Display old data</button>
     <button class="btn btn-primary" @onclick="(()=>FetchDifferentData())">Display new Data</button>
+    <button class="btn btn-success" @onclick="(()=>FetchNewDataKindAsync())">Display new Data Kind</button>
+    <button class="btn btn-secondary" style="align-self: flex-end" @onclick="(()=>AutoFitGridColumns())">Auto-Fit Columns</button>
 </div>
 @*<table class="table">
     <thead>
@@ -36,7 +38,12 @@
 @if (GetValues.Any())
 {
 
-    <TelerikGrid Data="GetValues" Sortable=true Pageable=true FilterMode="@Telerik.Blazor.GridFilterMode.FilterMenu">
+    <TelerikGrid Data="GetValues"
+             Sortable="true"
+             FilterMode="Telerik.Blazor.GridFilterMode.FilterMenu"
+             Pageable=true
+             Resizable="true"
+             @ref="@grid">
         <GridColumns>
             @foreach (var p in GetValues.First().GetType().GetProperties())
         {
@@ -46,23 +53,30 @@
 </TelerikGrid>
 }
 @code {
-    List<Object> GetValues = new List<Object>();
+    TelerikGrid<object> grid { get; set; }
+    List<object> GetValues = new List<object>();
+    public Type ItemType = default!;
 
     protected override async Task OnInitializedAsync()
     {
         var data = await server.GetDataAsync(10, 1);
         if (data is not null)
         {
-            GetValues.AddRange(data.Value);
+            GetValues = new List<object>(data.Value);
         }
     }
+
+
 
     public async Task FetchDifferentData()
     {
         var response = await server.GetProductsAsync();
         GetValues.Clear();//empty the list first
         GetValues = new List<object>(response);
+        await grid.AutoFitAllColumnsAsync();
     }
+
+    async void AutoFitGridColumns() => await grid.AutoFitAllColumnsAsync();
 
     public async Task FetchOldData()
     {
@@ -71,6 +85,18 @@
         {
             GetValues.Clear();//empty the list first
             GetValues = new List<object>(data.Value);
+            await grid.AutoFitAllColumnsAsync();
+        }
+    }
+
+    private async Task FetchNewDataKindAsync()
+    {
+        var data = await server.GetODataAsync();
+        if (data is not null)
+        {
+            GetValues.Clear();
+            GetValues = new List<object>(data.Value);
+            await grid.AutoFitAllColumnsAsync();
         }
     }
 }

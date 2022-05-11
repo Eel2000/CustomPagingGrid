@@ -36,17 +36,10 @@ namespace CustomPagingGrid.Client.Services
         public async Task<DataEnvelop> GetDataAsync(string filter)
         {
             try
-            {
-                
+            {         
                 var dataUri = new Uri($"https://localhost:7054/api/Values/get-data?{filter}");
-                var response = await _httpClient.GetAsync(dataUri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var rawData = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<DataEnvelop>(rawData);
-                    return data!;
-                }
-                return null!;
+                var response = await _httpClient.GetFromJsonAsync<DataEnvelop>(dataUri);
+                return response!;
             }
             catch (Exception e)
             {
@@ -65,6 +58,20 @@ namespace CustomPagingGrid.Client.Services
             catch (Exception e)
             {
                 return new List<Products>();
+            }
+        }
+
+        public async Task<ODataEnvelop> GetODataAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<object>("https://demos.telerik.com/kendo-ui/service-v4/odata/Products");
+                var data = JsonConvert.DeserializeObject<ODataEnvelop>(response.ToString());
+                return data!;
+            }
+            catch (Exception e)
+            {
+                return null!;
             }
         }
     }

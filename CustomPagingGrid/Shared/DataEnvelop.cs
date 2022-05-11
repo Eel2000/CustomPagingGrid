@@ -17,10 +17,10 @@ namespace CustomPagingGrid.Shared
         public int OdataCount { get; set; }
 
         [JsonProperty("value")]
-        public List<Value> Value { get; set; }
+        public List<OValue> Value { get; set; }
     }
 
-    public class Value
+    public class OValue
     {
         [JsonProperty("UserName")]
         public string UserName { get; set; }
