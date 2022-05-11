@@ -305,15 +305,87 @@ namespace CustomPagingGrid.Api.Controllers
         [HttpGet("get-data")]
         public async Task<IActionResult> GetDataFromQuery([FromQuery] QueryParameter query)
         {
-            var data = new DataEnvelop
+            DataEnvelop data = new DataEnvelop();
+            switch (query.OrderBy)
             {
-                OdataContext = "",
-                OdataCount = GetValues.Count,
-                Value = GetValues
-                .OrderBy(x => nameof(query.OrderBy))
-                .Skip(query.PageSize * (query.PageNumber - 1)).
-                Take(query.PageSize).ToList()
-            };
+                case nameof(Value.UserName):
+                    data = new DataEnvelop
+                    {
+                        OdataContext = "",
+                        OdataCount = GetValues.Count,
+                        Value = GetValues
+                       .OrderBy(x => x.UserName)
+                       .Skip(query.Skip * (query.Top - 1)).
+                       Take(query.Top).ToList()
+                    };
+                    break;
+                case nameof(Value.FirstName):
+                    data = new DataEnvelop
+                    {
+                        OdataContext = "",
+                        OdataCount = GetValues.Count,
+                        Value = GetValues
+                       .OrderBy(x => x.FirstName)
+                       .Skip(query.Skip * (query.Top - 1)).
+                       Take(query.Top).ToList()
+                    };
+                    break;
+                case nameof(Value.LastName):
+                    data = new DataEnvelop
+                    {
+                        OdataContext = "",
+                        OdataCount = GetValues.Count,
+                        Value = GetValues
+                       .OrderBy(x => x.LastName)
+                       .Skip(query.Skip * (query.Top - 1)).
+                       Take(query.Top).ToList()
+                    };
+                    break;
+                case nameof(Value.MiddleName):
+                    data = new DataEnvelop
+                    {
+                        OdataContext = "",
+                        OdataCount = GetValues.Count,
+                        Value = GetValues
+                       .OrderBy(x => x.MiddleName)
+                       .Skip(query.Skip * (query.Top - 1)).
+                       Take(query.Top).ToList()
+                    };
+                    break;
+                case nameof(Value.Age):
+                    data = new DataEnvelop
+                    {
+                        OdataContext = "",
+                        OdataCount = GetValues.Count,
+                        Value = GetValues
+                       .OrderBy(x => x.Age)
+                       .Skip(query.Skip * (query.Top - 1)).
+                       Take(query.Top).ToList()
+                    };
+                    break;
+                case nameof(Value.Gender):
+                    data = new DataEnvelop
+                    {
+                        OdataContext = "",
+                        OdataCount = GetValues.Count,
+                        Value = GetValues
+                       .OrderBy(x => x.Gender)
+                       .Skip(query.Skip * (query.Top - 1)).
+                       Take(query.Top).ToList()
+                    };
+                    break;
+                default:
+                    data = new DataEnvelop
+                    {
+                        OdataContext = "",
+                        OdataCount = GetValues.Count,
+                        Value = GetValues
+                                .Skip(query.Skip * (query.Top - 1)).
+                                Take(query.Top).ToList()
+                    };
+                    break;
+
+            }
             return Ok(data);
         }
 
